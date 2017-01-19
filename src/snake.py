@@ -111,7 +111,7 @@ class Snake(pygame.sprite.Sprite):
         if self.__currentDirection != self.__newDirection:
             self.__rotateSnakeHead()
             
-        if self.__bodyLength >= 1:
+        if self.__bodyLength > 0:
             segment = self.bodySegments.pop()
             segment.rect.topleft = self.snakeHead.rect.topleft
             self.bodySegments.insert(0, segment)
