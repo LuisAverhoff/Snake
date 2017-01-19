@@ -21,28 +21,28 @@ class Game(object):
         self.__exitGame = False
         self.__FPS = 30
         
-        self.__backgroundMusic = BackgroundMusic("Data/Music/")
-        self.__backgroundMusic.playMusic("Data/Music/")
+        self.__backgroundMusic = BackgroundMusic("../Data/Music/")
+        self.__backgroundMusic.playMusic("../Data/Music/")
         
-        self.__gameOverMusicFile = os.path.join("Data/Music/GameOverMusic/MetalGearGameOver.wav")
+        self.__gameOverMusicFile = os.path.abspath("../Data/Music/GameOverMusic/MetalGearGameOver.wav")
         
-        self.__backgroundLevel = BackgroundLevel("Data/Images/Levels/")
-        self.__backgroundLevel.loadLevel("Data/Images/Levels/", self.__currentLevel)
+        self.__backgroundLevel = BackgroundLevel("../Data/Images/Levels/")
+        self.__backgroundLevel.loadLevel("../Data/Images/Levels/", self.__currentLevel)
 
         self.__snake = Snake(screen.get_size())
         
-        self.__apple = Food("Data/Images/Sprites/", "RedApple.png")
+        self.__apple = Food("../Data/Images/Sprites/", "RedApple.png")
         self.__apple.genRandomPosition(screen, self.__snake)
     
         self.__backgroundLevel.image = pygame.transform.scale(self.__backgroundLevel.image, screen.get_size())
 
-        self.__gameOverText = Text("Game Over", "Data/Fonts/", "Halo3.ttf", 100, DARK_RED)
+        self.__gameOverText = Text("Game Over", "../Data/Fonts/", "Halo3.ttf", 100, DARK_RED)
         self.__gameOverText.renderText()
         textX = (screen.get_width() / 2) - (self.__gameOverText.textSize[0] / 2)
         textY = (screen.get_height() / 2) - (self.__gameOverText.textSize[1] / 2)
         self.__gameOverText.setPosition(textX, textY)
 
-        self.__scoreText = Text("Score: " + str(self.__snake.getScore), "Data/Fonts/", "neuropol x rg.ttf", 30, SLIVER)
+        self.__scoreText = Text("Score: " + str(self.__snake.getScore), "../Data/Fonts/", "neuropol x rg.ttf", 30, SLIVER)
         self.__scoreText.renderText()
         textX = screen.get_width() - self.__scoreText.textSize[0]
         self.__scoreText.setPosition(textX, 0)
@@ -60,7 +60,7 @@ class Game(object):
                 self.__snake.changeDirection(keys)
             
             if event.type == BackgroundMusic.TRACK_END:
-                self.__backgroundMusic.playNextMusic("Data/Music/")
+                self.__backgroundMusic.playNextMusic("../Data/Music/")
 
     def __update(self, screen, screenDimensions):
         if self.__snake.getSnakeSpeed != (0, 0) and self.__transition.isTransitionDone:

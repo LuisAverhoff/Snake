@@ -33,7 +33,7 @@ class BackgroundLevel(pygame.sprite.Sprite):
         return False
 
     def loadLevel(self, path, level):
-        file = os.path.join(path + self.__levels[level])
+        file = os.path.abspath(path + self.__levels[level])
         
         try:
             self.image = pygame.image.load(file).convert()

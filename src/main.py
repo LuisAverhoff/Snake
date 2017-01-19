@@ -24,10 +24,10 @@ class GameMenu(object):
         self.__exit = False
         self.__action = ""
 
-        backgroundImageFile = os.path.join("Data/Images/MainMenuBackground.png")
-        self.mainMenuMusicFile = os.path.join("Data/Music/MainMenuMusic/SuperMonkeyBall2SelectMode.wav")
-        movementEffectFile = os.path.join("Data/Music/SoundEffects/MenuMovement.wav")
-        selectionEffectFile = os.path.join("Data/Music/SoundEffects/MenuSelection.wav")
+        backgroundImageFile = os.path.abspath("../Data/images/MainMenuBackground.png")
+        self.mainMenuMusicFile = os.path.abspath("../Data/Music/MainMenuMusic/SuperMonkeyBall2SelectMode.wav")
+        movementEffectFile = os.path.abspath("../Data/Music/SoundEffects/MenuMovement.wav")
+        selectionEffectFile = os.path.abspath("../Data/Music/SoundEffects/MenuSelection.wav")
         
         try:
             self.__backgroundImage = pygame.image.load(backgroundImageFile).convert()
@@ -48,7 +48,7 @@ class GameMenu(object):
         self.__addMainMenuItems(items)
         self.__totalItems = len(self.__items)
 
-        self.__BackToMenuText = Text("Back", "Data/Fonts/", "SpicyRice-Regular.otf", 35, BLACK)
+        self.__BackToMenuText = Text("Back", "../Data/Fonts/", "SpicyRice-Regular.otf", 35, BLACK)
         self.__BackToMenuText.renderText()
         posY = self.screenSize[1] - self.__BackToMenuText.textSize[1]
         self.__BackToMenuText.setPosition(0, posY)
@@ -59,14 +59,14 @@ class GameMenu(object):
         self.__transition = Transition(screen, "Fade Out", 255, BLACK)
 
     def __addMainMenuItems(self, items):
-        self.__titleMenuItem = Text("Welcome to Snake", "Data/Fonts/", "SpicyRice-Regular.otf", 50, BLACK)
+        self.__titleMenuItem = Text("Welcome to Snake", "../Data/Fonts/", "SpicyRice-Regular.otf", 50, BLACK)
         self.__titleMenuItem.renderText()
         posX = (self.screenSize[0] / 2) - (self.__titleMenuItem.textSize[0] / 2)
         posY = (self.screenSize[1] / 4) - (self.__titleMenuItem.textSize[1] / 4)
         self.__titleMenuItem.setPosition(posX, posY)        
         
         for index, item in enumerate(items):
-           menuItem = Text(item, "Data/Fonts/", "SpicyRice-Regular.otf", 25, BLACK)
+           menuItem = Text(item, "../Data/Fonts/", "SpicyRice-Regular.otf", 25, BLACK)
            menuItem.renderText()
 
            posX = (self.screenSize[0] / 2) - (menuItem.textSize[0] / 2)

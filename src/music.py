@@ -36,7 +36,7 @@ class BackgroundMusic(object):
         return False
 
     def __loadMusic(self, path): 
-        file = os.path.join(path + self.__tracks[self.__currentTrack])
+        file = os.path.abspath(path + self.__tracks[self.__currentTrack])
             
         try:
             pygame.mixer.music.load(file)

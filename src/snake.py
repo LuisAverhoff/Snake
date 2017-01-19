@@ -1,4 +1,5 @@
 import pygame
+import logging
 import os
 
 class Snake(pygame.sprite.Sprite):
@@ -37,8 +38,8 @@ class Snake(pygame.sprite.Sprite):
         # it may not necessarily be pointing 90 degrees.
         self.__totalRotation = 0
 
-        gulpEffectFile = os.path.join("Data/Music/SoundEffects/Gulp.wav")
-        cartoonSwipeEffectFile = os.path.join("Data/Music/SoundEffects/CartoonSwipe.wav")
+        gulpEffectFile = os.path.abspath("../Data/Music/SoundEffects/Gulp.wav")
+        cartoonSwipeEffectFile = os.path.abspath("../Data/Music/SoundEffects/CartoonSwipe.wav")
 
         try:
             self.gulpSoundEffect = pygame.mixer.Sound(gulpEffectFile)
@@ -48,11 +49,11 @@ class Snake(pygame.sprite.Sprite):
             raise
 
         headPosition = (screenDimensions[0] / 2, screenDimensions[1] / 2)
-        self.snakeHead = Snake._SnakeSegment(headPosition, "Data\Images\Sprites", "SnakeHead.png")
+        self.snakeHead = Snake._SnakeSegment(headPosition, "../Data/Images/Sprites/", "SnakeHead.png")
         
         for i in range(0, 4):
             segmentPosition = (headPosition[0], headPosition[1] + (Snake.__SEGMENT_DIMENSIONS[1] * (i + 1)))
-            segment = Snake._SnakeSegment(segmentPosition, "Data\Images\Sprites", "SnakeBody.png")
+            segment = Snake._SnakeSegment(segmentPosition, "../Data/Images/Sprites/", "SnakeBody.png")
             self.bodySegments.append(segment)
 
         self.__bodyLength = len(self.bodySegments)
@@ -138,16 +139,16 @@ class Snake(pygame.sprite.Sprite):
                 displacement = (self.__speed[0] * -1, self.__speed[1])
 
         tailHead.update(displacement)
-        self.bodySegments.append(Snake._SnakeSegment(tailHead.rect.topleft,"Data\Images\Sprites",  "SnakeBody.png"))
+        self.bodySegments.append(Snake._SnakeSegment(tailHead.rect.topleft,"../Data/Images/Sprites/",  "SnakeBody.png"))
         self.__bodyLength += 1
 
     def __changeSnakeSkin(self):
         for index, segment in enumerate(self.bodySegments):
             segment = self.bodySegments.pop(index)
-            newSegment = Snake._SnakeSegment(segment.rect.topleft, "Data\Images\Sprites", "SnakeRedBody.png")
+            newSegment = Snake._SnakeSegment(segment.rect.topleft, "../Data/Images/Sprites/", "SnakeRedBody.png")
             self.bodySegments.insert(index, newSegment)
 
-        self.snakeHead = Snake._SnakeSegment(self.snakeHead.rect.topleft, "Data\Images\Sprites", "SnakeRedHead.png")
+        self.snakeHead = Snake._SnakeSegment(self.snakeHead.rect.topleft, "../Data/Images/Sprites/", "SnakeRedHead.png")
         self.snakeHead.image = pygame.transform.rotate(self.snakeHead.image, float(self.__totalRotation))
 
     def __cutSnake(self, segmentsToCut):
@@ -214,7 +215,7 @@ class Snake(pygame.sprite.Sprite):
             super().__init__()
 
             if file not in Snake._SnakeSegment.__SnakeImages:
-                snakeBodyFile = os.path.join(path, file)
+                snakeBodyFile = os.path.abspath(path + file)
          
                 try:
                     Snake._SnakeSegment.__SnakeImages[file] = pygame.image.load(snakeBodyFile).convert_alpha()

@@ -19,7 +19,7 @@ class Text(object):
         
         if self.font is None:
             try:
-                self.font = pygame.font.Font(os.path.join(path, fontName), fontSize)
+                self.font = pygame.font.Font(os.path.abspath(path + fontName), fontSize)
             except pygame.error as errorMessage:
                 logging.exception(errorMessage)
                 raise

@@ -8,7 +8,7 @@ class Food(pygame.sprite.Sprite):
     def __init__(self, path, file):
         super().__init__()
 
-        imageFile = os.path.join(path, file)
+        imageFile = os.path.abspath(path + file)
 
         try:
             self.image = pygame.image.load(imageFile).convert_alpha()
