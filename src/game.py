@@ -67,7 +67,6 @@ class Game(object):
             self.__snake.move()
 
         if  self.__snake.snakeHead.rect.colliderect(self.__apple.rect):
-            self.__snake.gulpSoundEffect.play()
             self.__snake.extend()
             self.__updateScore(screenDimensions)
             self.__apple.genRandomPosition(screen, self.__snake)

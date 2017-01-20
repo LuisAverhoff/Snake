@@ -34,16 +34,13 @@ class Snake(pygame.sprite.Sprite):
         self.__lives = 3
         self.__score = 0
         # A private variable to keep track of the final rotation that needs to be performed when the snake dies and his head becomes red.
-        # We need this because the red snake head image is initially rotated 90 degrees and when the snake dies and we have to load this image,
+        # We need this because the red snake head image is initially rotated 90 degrees and when the green snake dies and the red snake image needs to be loaded,
         # it may not necessarily be pointing 90 degrees.
         self.__totalRotation = 0
 
-        gulpEffectFile = os.path.abspath("../Data/Music/SoundEffects/Gulp.wav")
-        cartoonSwipeEffectFile = os.path.abspath("../Data/Music/SoundEffects/CartoonSwipe.wav")
-
         try:
-            self.gulpSoundEffect = pygame.mixer.Sound(gulpEffectFile)
-            self.__cartoonSwipeSoundEffect = pygame.mixer.Sound(cartoonSwipeEffectFile)
+            self.__gulpSoundEffect = pygame.mixer.Sound(os.path.abspath("../Data/Music/SoundEffects/Gulp.wav"))
+            self.__cartoonSwipeSoundEffect = pygame.mixer.Sound(os.path.abspath("../Data/Music/SoundEffects/CartoonSwipe.wav"))
         except pygame.error as errorMessage:
             logging.exception(errorMessage)
             raise
@@ -122,6 +119,8 @@ class Snake(pygame.sprite.Sprite):
     def extend(self):
         if not self.bodySegments:
             return
+
+        self.__gulpSoundEffect.play()
 
         tailHead = self.bodySegments[self.__bodyLength - 1]
 
