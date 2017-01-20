@@ -86,16 +86,16 @@ class Snake(pygame.sprite.Sprite):
         if self.__bodyLength > 1:
             headDirection = self.__getHeadDirection()
         
-        if keys[pygame.K_LEFT] and headDirection != "Right":
+        if (keys[pygame.K_LEFT] or keys[pygame.K_a]) and headDirection != "Right":
             self.__speed = (Snake.__SEGMENT_DIMENSIONS[0] * -1, 0)
             self.__newDirection = "Left"
-        elif keys[pygame.K_RIGHT] and headDirection != "Left":
+        elif (keys[pygame.K_RIGHT] or keys[pygame.K_d]) and headDirection != "Left":
             self.__speed = (Snake.__SEGMENT_DIMENSIONS[0], 0)
             self.__newDirection = "Right"
-        elif keys[pygame.K_UP] and headDirection != "Down":
+        elif (keys[pygame.K_UP] or keys[pygame.K_w]) and headDirection != "Down":
             self.__speed = (0, Snake.__SEGMENT_DIMENSIONS[1] * -1)
             self.__newDirection = "Up"
-        elif keys[pygame.K_DOWN] and headDirection != "Up":
+        elif (keys[pygame.K_DOWN] or keys[pygame.K_d]) and headDirection != "Up":
             self.__speed = (0, Snake.__SEGMENT_DIMENSIONS[1])
             self.__newDirection = "Down"
 
