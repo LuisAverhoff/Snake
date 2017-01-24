@@ -1,5 +1,6 @@
 import pygame
 import logging
+import sys
 import os
 
 class Snake(pygame.sprite.Sprite):
@@ -217,7 +218,7 @@ class Snake(pygame.sprite.Sprite):
             if(sys.version_info > (3, 0)):
                 super().__init__()
             else:
-	            super(SnakeSegment, self).__init__()
+	        super(Snake._SnakeSegment, self).__init__()
 
             if file not in Snake._SnakeSegment.__SnakeImages:
                 snakeBodyFile = os.path.abspath(path + file)
