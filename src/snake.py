@@ -24,7 +24,10 @@ class Snake(pygame.sprite.Sprite):
     __SEGMENT_DIMENSIONS = (32, 32)
     
     def __init__(self, screenDimensions):
-        super().__init__()
+        if(sys.version_info > (3, 0)):
+	        super().__init__()
+        else:
+	        super(Snake, self).__init__()
         
         self.bodySegments = []
         self.__speed = (0, 0)
@@ -211,7 +214,10 @@ class Snake(pygame.sprite.Sprite):
         __SnakeImages = {}
         
         def __init__(self, position, path, file):
-            super().__init__()
+            if(sys.version_info > (3, 0)):
+                super().__init__()
+            else:
+	            super(SnakeSegment, self).__init__()
 
             if file not in Snake._SnakeSegment.__SnakeImages:
                 snakeBodyFile = os.path.abspath(path + file)
