@@ -7,7 +7,10 @@ import os
 class BackgroundLevel(pygame.sprite.Sprite):
 
     def __init__(self, path):
-        super().__init__()
+        if(sys.version_info > (3, 0)):
+	        super().__init__()
+        else:
+	        super(BackgroundLevel, self).__init__()
 
         self.__levels = []
 
