@@ -1,6 +1,7 @@
 import pygame
 import random
 import logging
+import sys
 import os
 
 class Food(pygame.sprite.Sprite):
