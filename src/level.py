@@ -2,6 +2,7 @@ import pygame
 import random
 import imghdr
 import logging
+import sys
 import os
 
 class BackgroundLevel(pygame.sprite.Sprite):
