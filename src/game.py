@@ -19,7 +19,7 @@ class Game(object):
         self.__currentLevel = 0
         self.__gameOver = False
         self.__exitGame = False
-        self.__FPS = 30
+        self.__FPS = 20
         
         self.__backgroundMusic = BackgroundMusic("../Data/Music/")
         self.__backgroundMusic.playMusic("../Data/Music/")
