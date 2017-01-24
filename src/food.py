@@ -6,7 +6,10 @@ import os
 class Food(pygame.sprite.Sprite):
 
     def __init__(self, path, file):
-        super().__init__()
+        if(sys.version_info > (3, 0)):
+	        super().__init__()
+        else:
+	        super(Food, self).__init__()
 
         imageFile = os.path.abspath(path + file)
 
